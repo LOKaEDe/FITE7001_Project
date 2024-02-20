@@ -23,3 +23,9 @@ def prices(request):
 	else:
 		notfound = "Enter a crypto currency symbol into the form above..."
 		return render(request, 'prices.html', {'notfound': notfound})
+
+def Ex_score(request):
+	return render(request, 'score.html')
+
+def report(request):
+	return render(request, 'report.html')
