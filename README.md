@@ -1,16 +1,8 @@
-1. install Pycharm and python
-
-install  virtualenv (in Pycharm termainal )
-
-2.pip install virtualenv
-
-3. virtualenv env
+1. install visual studio and python
    
-4. env/bin/activate
-   
-5. pip install -r /path/to/requirements.txt
-   
-6. python manage.py runserver 0.0.0.0:8000
+2. pip install -r /path/to/requirements.txt
+  
+3. python manage.py runserver 0.0.0.0:8000
 
 
 Exposing a Django app with Ngrok
