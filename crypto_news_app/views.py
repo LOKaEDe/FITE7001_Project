@@ -44,12 +44,6 @@ def Ex_score(request):
 	print( volume_pd  )	
 	return render(request, 'score.html', {'name': 'Total Daily Trading Volume by USD' , 'data': volume_pd.to_html()})
 
-	
-
-
-
-
-	return render(request, 'score.html')
 
 def report(request):
 	return render(request, 'report.html')
