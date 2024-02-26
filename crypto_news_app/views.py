@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 import json
 import pandas as pd
+import datetime
 
 def home(request):
 	# Get Crypto Prices
@@ -11,7 +12,7 @@ def home(request):
 	# Get Crypto News
 	news_request = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN&categories=BTC,ETH,USDT,USDC,DAI,BUSD,TUSD,FRAX,USDP,LUSD")
 	news = json.loads(news_request.content)
-	return render(request, 'home.html', {'news': news, 'price': price})
+	return render(request, 'home.html', {'news': news, 'price': price,'time':datetime.datetime.now()})
 
 def prices(request):
 	if request.method == 'POST':
@@ -42,14 +43,7 @@ def Ex_score(request):
 	volume_pd.sort_values('volume',inplace=True,ascending=False)
 	volume_pd['time'] = pd.to_datetime(volume_pd['time'],unit='s')
 	print( volume_pd  )	
-	return render(request, 'score.html', {'name': 'Total Daily Trading Volume by USD' , 'data': volume_pd.to_html()})
-
-	
-
-
-
-
-	return render(request, 'score.html')
+	return render(request, 'score.html', {'name': 'Total Daily Trading Volume by USD' , 'data': volume_pd.to_html(),'time':datetime.datetime.now()})
 
 def report(request):
 	return render(request, 'report.html')
