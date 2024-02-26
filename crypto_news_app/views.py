@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 import json
+import pandas as pd
 
 def home(request):
 	# Get Crypto Prices
@@ -25,6 +26,29 @@ def prices(request):
 		return render(request, 'prices.html', {'notfound': notfound})
 
 def Ex_score(request):
+    ##get exchange volume 
+	exchange_list = ['Binance','Bitfinex','Bitstamp','Coinbase',
+				     'HitBTC','Huobi','Kraken','OKEX','Poloniex','bybit','deribit','itBit']
+	volume_dict ={}
+	#Get total volume from the daily historical exchange data
+	for e in exchange_list :
+		volmue_request = requests.get(f"https://min-api.cryptocompare.com/data/exchange/histoday?={e}&tsym=usd&limit=1")
+		volume = json.loads(volmue_request.content)
+		volume_dict[e] =  volume['Data'][1]  
+	pd.set_option('float_format', '{:f}'.format)
+	volume_pd = pd.DataFrame.from_dict(volume_dict).T
+	volume_pd['volume'] = volume_pd['volume'].apply(lambda x: '{:,.2f}'.format(x))
+#	volume_pd['volume'] = volume_pd['volume'].astype(int)
+	volume_pd.sort_values('volume',inplace=True,ascending=False)
+	volume_pd['time'] = pd.to_datetime(volume_pd['time'],unit='s')
+	print( volume_pd  )	
+	return render(request, 'score.html', {'name': 'Total Daily Trading Volume by USD' , 'data': volume_pd.to_html()})
+
+	
+
+
+
+
 	return render(request, 'score.html')
 
 def report(request):
