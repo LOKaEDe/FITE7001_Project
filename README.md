@@ -2,7 +2,7 @@
    
 2. pip install -r /path/to/requirements.txt
   
-3. python manage.py runserver 0.0.0.0:8000
+3. python manage.py runserver 
 
 
 Exposing a Django app with Ngrok
