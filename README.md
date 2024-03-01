@@ -1,6 +1,6 @@
 1. install visual studio and python
    
-2. pip install -r /path/to/requirements.txt
+2. pip install -r /path/requirements.txt
   
 3. python manage.py runserver 
 
