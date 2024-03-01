@@ -11,4 +11,4 @@ Exposing a Django app with Ngrok
    
 2. add token : ngrok config add-authtoken <token>
 
-3. running local server >> external server : ngrok http 80
+3. running local server >> external server : ngrok http 8000
