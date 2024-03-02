@@ -7,33 +7,47 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <title>Crypto News</title>
   </head>
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  		<div class="container">
-	  	  <a class="navbar-brand" href="{% url 'home' %}">Crypto News</a>
-	  	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+   	<nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-column">
+  		<div class="container d-flex text-center">
+		  <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	  	    <span class="navbar-toggler-icon"></span>
 	  	  </button>
+	  	  <a class="navbar-brand mx-auto mx-lg-0" href="{% url 'home' %}">Crypto News</a>
+			<form class="form-inline my-2 my-lg-0 d-flex ml-auto" method="POST" action="{% url 'prices' %}">
+            {% csrf_token %}
+			  <div class="input-group">
+	  	        <input class="form-control" type="search" name="quote" placeholder="Lookup Crypto" aria-label="Search" />
+	  	          <button class="btn btn-outline-secondary" type="submit">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                  </svg>
+				  </button>
+			  </div>
+	  	    </form>
+		</div>
 
+
+		<div class="container">
 	  	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	  	    <ul class="navbar-nav mr-auto">
+		    <ul class="navbar-nav nav-justified w-100">
 	  	      <li class="nav-item">
-	  	        <a class="nav-link" href="{% url 'prices' %}">Lookup Prices</a>
+	  	          <a class="nav-link" href="{% url 'prices' %}">Lookup Prices</a>
+			  </li>
+			  <li class="nav-item">
                   <a class="nav-link" href="{% url 'score' %}">Exchange Scoring system</a>
+			  </li>
+		      <li class="nav-item">
 				  <a class="nav-link" href="{% url 'report' %}">Analytical Reporting</a>
 	  	      </li>
 	  	    </ul>
-	  	    <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'prices' %}">
-            {% csrf_token %}
-	  	      <input class="form-control mr-sm-2" type="search" name="quote" placeholder="Lookup Crypto" aria-label="Search" />
-	  	      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Lookup</button>
-	  	    </form>
-	  	  </div>
-  	  </div>
+		  </div>
+		</div>
+
   	</nav>
+
   	<div>
   		{% block content %}
 	    {% endblock %}
@@ -44,5 +58,28 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<!-- Data Table CSS -->
+        <link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
+        <!-- Font Awesome CSS -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+
+	<!-- Data Table JS -->
+<script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
+<script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+
+		<script>
+$(document).ready(function() {
+    $('#example').DataTable({
+      //disable sorting on last column
+      "columnDefs": [
+        { "orderable": false }
+      ],
+      "paging": false,
+      "info" : false
+    })
+} );
+		</script>
   </body>
 </html>
