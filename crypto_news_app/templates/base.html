@@ -97,11 +97,13 @@ box-shadow:0 0 0 1px #868E96 inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 3px 
             {% csrf_token %}
 			  <div class="input-group">
 	  	        <input class="form-control" type="search" name="quote" placeholder="Lookup Crypto" aria-label="Search" />
-	  	          <button class="btn btn-outline-light" type="submit">
-				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                  </svg>
+				  <div class="input-group-append">
+	  	            <button class="btn btn-outline-secondary" type="submit">
+				    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
 				  </button>
+				  </div>
 			  </div>
 	  	    </form>
 		  </div>
