@@ -10,7 +10,7 @@
 	}
 </style>
 
-<div class="py-5" style="padding-left:10em; padding-right:10em;">
+<div class="container-fluid py-5" style="padding-left:10em; padding-right:10em;">
     {% for items in data %}
 
     {% with 'media/'|add:items.exchange|add:'.png' as image_static %}
@@ -19,7 +19,7 @@
 <div class="row">
 
     <div class="col-lg-4">
-    <div class="card bg-secondary shadow mb-3 border-5" style="border-radius: 15px;border-width:thick;">
+    <div class="card bg-secondary shadow mb-4 border-1" style="border-radius: 15px;border-width:thick;">
         <div class="card-body p-2">
             <h4>Bitfinex Trust Score</h4>
             {% if items.Y >= 0.6 %}
@@ -52,7 +52,7 @@
 
     <div class="col-lg-8">
 
-    <div class="card bg-secondary shadow mb-3 border-5" style="border-radius: 15px;border-width:thick;">
+    <div class="card bg-secondary shadow mb-4 border-1" style="border-radius: 15px;border-width:thick;">
         <div class="card-body p-2">
             <h4>exchange info</h4>
              <table class="table table-sm m-0">
@@ -82,7 +82,7 @@
         </div>
     </div>
 
-        <div class="card bg-secondary shadow mb-3 border-5" style="border-radius: 15px;border-width:thick;">
+        <div class="card bg-secondary shadow mb-4 border-1" style="border-radius: 15px;border-width:thick;">
         <div class="card-body p-2">
             <h4>liquidity</h4>
              <table class="table table-sm m-0">
@@ -100,7 +100,7 @@
         </div>
     </div>
 
-        <div class="card bg-secondary shadow mb-3 border-5" style="border-radius: 15px;border-width:thick;">
+        <div class="card bg-secondary shadow mb-4 border-1" style="border-radius: 15px;border-width:thick;">
         <div class="card-body p-2">
             <h4>Security and Licensing</h4>
              <table class="table table-sm m-0">
@@ -115,7 +115,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Company operation mode</th>
-                        <td>{{ items.Company_operation_mode }}</td>
+                        <td>{{ items.Company_operation_mode_ }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Transaction functions available in sanctioned country  (OFAC)</th>
