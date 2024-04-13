@@ -4,22 +4,30 @@
 
 {% load static %}
 
+<style>
+	tbody th {
+	  color: #F8F9FA;
+	}
+</style>
+
 <div class="py-5" style="padding-left:10em; padding-right:10em;">
     {% for items in data %}
 
     {% with 'media/'|add:items.exchange|add:'.png' as image_static %}
 	<h2><img src="{% static image_static %}" class="rounded" width="40" height="40" style="vertical-align: sub;"> {{ items.exchange }}</h2></td>
 	{% endwith %}
+<div class="row">
 
+    <div class="col-lg-4">
     <div class="card bg-secondary shadow mb-3">
         <div class="card-body p-2">
             <h4>Bitfinex Trust Score</h4>
             {% if items.Y >= 0.6 %}
 		    <h1 class="alert alert-success border-0 d-inline-block" style="border-radius: 25px;">{{ items.Y }}</h1>
             {% elif items.Y >= 0.3 %}
-			<h1 class="alert alert-warning border-0 d-inline-block">{{ items.Y }}</h1>
+			<h1 class="alert alert-warning border-0 d-inline-block" style="border-radius: 25px;">{{ items.Y }}</h1>
 			{% else %}
-			<h1 class="alert alert-danger border-0 d-inline-block">{{ items.Y }}</h1>
+			<h1 class="alert alert-danger border-0 d-inline-block" style="border-radius: 25px;">{{ items.Y }}</h1>
 			{% endif %}
 
             <table class="table table-sm m-0">
@@ -40,6 +48,9 @@
 
         </div>
     </div>
+        </div>
+
+    <div class="col-lg-8">
 
     <div class="card bg-secondary shadow mb-3">
         <div class="card-body p-2">
@@ -125,5 +136,7 @@
 
     {% endfor %}
 </div>
+
+    </div></div>
 
 {% endblock %}
