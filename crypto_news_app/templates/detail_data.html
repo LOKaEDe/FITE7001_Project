@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="py-5" style="padding-left:10em; padding-right:10em;">
+    {% for items in data %}
+
+    {% with 'media/'|add:items.exchange|add:'.png' as image_static %}
+	<h2><img src="{% static image_static %}" class="rounded" width="40" height="40" style="vertical-align: sub;"> {{ items.exchange }}</h2></td>
+	{% endwith %}
+
+    <div class="card bg-secondary shadow mb-3">
+        <div class="card-body p-2">
+            <h4>Bitfinex Trust Score</h4>
+            {% if items.Y >= 0.6 %}
+		    <h1 class="alert alert-success border-0 d-inline-block" style="border-radius: 25px;">{{ items.Y }}</h1>
+            {% elif items.Y >= 0.3 %}
+			<h1 class="alert alert-warning border-0 d-inline-block">{{ items.Y }}</h1>
+			{% else %}
+			<h1 class="alert alert-danger border-0 d-inline-block">{{ items.Y }}</h1>
+			{% endif %}
+
+            <table class="table table-sm m-0">
+                <tbody>
+                    <tr>
+                        <th scope="row">T1</th>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">T2</th>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">This is a tabled form for the breakdown of Trust Score. For more details read our <a href="https://google.com" class="text-white"><strong>full methodology</strong></a>.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="card bg-secondary shadow mb-3">
+        <div class="card-body p-2">
+            <h4>exchange info</h4>
+             <table class="table table-sm m-0">
+                <tbody>
+                    <tr>
+                        <th scope="row">exchange_volume</th>
+                        <td>{{ items.exchange_volume }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">num_market_pairs</th>
+                        <td>{{ items.num_market_pairs }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">weekly_visits</th>
+                        <td>{{ items.weekly_visits }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">fiat withdrawal restriction (any)*</th>
+                        <td>{{ items.fiat_withdrawal_restriction_any }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">fiats</th>
+                        <td>{{ items.fiats }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+        <div class="card bg-secondary shadow mb-3">
+        <div class="card-body p-2">
+            <h4>liquidity</h4>
+             <table class="table table-sm m-0">
+                <tbody>
+                    <tr>
+                        <th scope="row">netflow_total</th>
+                        <td>{{ items.netflow_total }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">reserve_BTC_in_usd</th>
+                        <td>{{ items.reserve_BTC_in_usd }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+        <div class="card bg-secondary shadow mb-3">
+        <div class="card-body p-2">
+            <h4>Security and Licensing</h4>
+             <table class="table table-sm m-0">
+                <tbody>
+                    <tr>
+                        <th scope="row">Due diligence on virtual assets</th>
+                        <td>{{ items.Due_diligence_on_virtual_assets }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Know your client (KYC)</th>
+                        <td>{{ items.Know_your_client_KYC }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Company operation mode</th>
+                        <td>{{ items.Company_operation_mode }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Transaction functions available in sanctioned country  (OFAC)</th>
+                        <td>{{ items.Transaction_functions_available_in_sanctioned_country__OFAC }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Customer Transaction Protection (eg. 2FA, SMS)</th>
+                        <td>{{ items.Customer_Transaction_Protection_eg_2FA_SMS }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Licensing</th>
+                        <td>{{ items.Licensing }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

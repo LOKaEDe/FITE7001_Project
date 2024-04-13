@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+	tbody tr {
+	  height:3.5em;
+	  font-size:1.2em;
+	}
+
+	td {
+	  vertical-align: middle !important;
+	}
+</style>
+
+	<div class="pt-5" style="padding-left:10em; padding-right:10em;">
+
+		<table id="example" class="table table-hover table-responsive-sm">
+		  <thead>
+		    <tr>
+		      <th scope="col">Exchange</th>
+		      <th scope="col" style="max-width: 4em;">Trust Score</th>
+		      <th scope="col">reserve_BTC_in_usd</th>
+		      <th scope="col">netflow_total</th>
+		    </tr>
+		  </thead>
+			<tbody>
+		{% for items in data %}
+
+		    <tr>
+				{% with 'media/'|add:items.exchange|add:'.png' as image_static %}
+				<td><a href="{{ items.exchange }}" class="text-decoration-none text-white"><img src="{% static image_static %}" class="rounded-circle" width="30" height="30"><strong class="ml-2">{{ items.exchange }}</strong></a></td>
+				{% endwith %}
+				<td>
+					{% if items.Y >= 0.6 %}
+		            <small class="ml-2 mt-3 alert alert-success py-0 px-1 d-inline-block">{{ items.Y }}</small>
+                    {% elif items.Y >= 0.3 %}
+			        <small class="ml-2 mt-3 alert alert-warning py-0 px-1 d-inline-block">{{ items.Y }}</small>
+					{% else %}
+					<small class="ml-2 mt-3 alert alert-danger py-0 px-1 d-inline-block">{{ items.Y }}</small>
+			        {% endif %}
+
+				</td>
+		      <td>{{ items.reserve_BTC_in_usd }}</td>
+		      <td>{{ items.netflow_total }}</td>
+		    </tr>
+
+			{% endfor %}
+
+		  </tbody>
+		</table>
+	</div>
+
+{% endblock %}

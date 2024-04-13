@@ -1,0 +1,8 @@
+<html>
+  <body>
+    <div id="btc" hx-get="{% url 'exchanges' %}" hx-trigger="every 60s" hx-swap="innerHTML">
+     {% include 'exchanges_data.html' %}
+    </div>
+  </body>
+  <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+</html>
