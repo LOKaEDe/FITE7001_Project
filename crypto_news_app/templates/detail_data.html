@@ -107,27 +107,63 @@
                 <tbody>
                     <tr>
                         <th scope="row">Due diligence on virtual assets</th>
-                        <td>{{ items.Due_diligence_on_virtual_assets }}</td>
+                        <td>
+                            {% if items.Due_diligence_on_virtual_assets == 'Y' %}
+                            <i class="material-icons">done</i>
+                            {% else %}
+                            <i class="material-icons">close</i>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Know your client (KYC)</th>
-                        <td>{{ items.Know_your_client_KYC }}</td>
+                        <td>
+                            {% if items.Know_your_client_KYC == 'Y' %}
+                            <i class="material-icons">done</i>
+                            {% else %}
+                            <i class="material-icons">close</i>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Company operation mode</th>
-                        <td>{{ items.Company_operation_mode_ }}</td>
+                        <td>
+                            {% if items.Company_operation_mode_ == 'Y' %}
+                            <i class="material-icons">done</i>
+                            {% else %}
+                            <i class="material-icons">close</i>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Transaction functions available in sanctioned country  (OFAC)</th>
-                        <td>{{ items.Transaction_functions_available_in_sanctioned_country__OFAC }}</td>
+                        <td>
+                            {% if items.Transaction_functions_available_in_sanctioned_country__OFAC == 'Y' %}
+                            <i class="material-icons">done</i>
+                            {% else %}
+                            <i class="material-icons">close</i>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Customer Transaction Protection (eg. 2FA, SMS)</th>
-                        <td>{{ items.Customer_Transaction_Protection_eg_2FA_SMS }}</td>
+                        <td>
+                            {% if items.Customer_Transaction_Protection_eg_2FA_SMS == 'Y' %}
+                            <i class="material-icons">done</i>
+                            {% else %}
+                            <i class="material-icons">close</i>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Licensing</th>
-                        <td>{{ items.Licensing }}</td>
+                        <td>
+                            {% if items.Licensing == 'Y' %}
+                            <i class="material-icons">done</i>
+                            {% else %}
+                            <i class="material-icons">close</i>
+                            {% endif %}
+                        </td>
                     </tr>
                 </tbody>
             </table>
