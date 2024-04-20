@@ -72,3 +72,10 @@ def exchanges_detail(request, exchange_name):
         if data[index][4]==exchange_name:
             data_dict.append(dict(zip(header, data[index])))
     return render(request, 'detail.html', {'data': data_dict})
+
+
+def email_post(request):
+    ctx ={}
+    if request.POST:
+        ctx['rlt'] = request.POST['email-input'] + ' hello world!'
+    return render(request, "email_post.html", ctx)

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <!--
 	<div class="jumbotron fluid mb-5 bg-secondary">
 		<div class="container">
@@ -81,34 +80,7 @@ Monitoring, Exchange Scoring, and Analytical Reporting"</font>
 	<div class="container mb-5">
 
 		<table id="example" class="table table-striped table-dark table-hover table-responsive-sm">
-			<caption>Auto updated every minute; last updated: <strong>{{time}}</strong>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#emailModal">
-          Get Notification
-        </button>
-        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="emailModalLabel">Enter your email</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form id="email-form" action="/email-post/" method="post">
-                    {% csrf_token %}
-                  <div class="form-group">
-                    <label for="email-input">Email address</label>
-                    <input type="email" class="form-control" id="email-input" name="email-input" aria-describedby="emailHelp" placeholder="Enter email" required>
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                  </div>
-                  <button onclick="callPythonScript()" type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </caption>
+			<caption>Auto updated every minute; last updated: <strong>{{time}}</strong></caption>
 		  <thead>
 		    <tr>
 		      <th scope="col">Name</th>
@@ -119,23 +91,17 @@ Monitoring, Exchange Scoring, and Analytical Reporting"</font>
 		    </tr>
 		  </thead>
 			<tbody>
-		{% for key,value in price.RAW.items %}
-		    {% if key != "BTC" and key != "ETH" %}
-		        {% if value.USD.PRICE >= 1.05 or value.USD.PRICE <= 0.95 %}
-		        <tr class="bg-danger">
-                {% else %}
-		        <tr>
-		        {% endif %}
-	        {% endif %}
+		{% for key,value in price.DISPLAY.items %}
 
+		    <tr>
 		      <td>{{ key }}</td>
-		      <td>{{ value.USD.PRICE|floatformat:5 }}</td>
-		      <td>{{ value.USD.HIGHDAY|floatformat:5 }}</td>
-		      <td>{{ value.USD.LOWDAY|floatformat:5 }}</td>
-		      <td>{{ value.USD.MKTCAP|floatformat:5 }}</td>
+		      <td>{{ value.USD.PRICE }}</td>
+		      <td>{{ value.USD.HIGHDAY }}</td>
+		      <td>{{ value.USD.LOWDAY }}</td>
+		      <td>{{ value.USD.MKTCAP }}</td>
 		    </tr>
 
-		{% endfor %}
+			{% endfor %}
 
 		  </tbody>
 		</table>
@@ -188,48 +154,3 @@ Monitoring, Exchange Scoring, and Analytical Reporting"</font>
 <!-- 	{{ api.Data }} -->
 
 {% endblock %}
-
-<script>
-   function callPythonScript() {
-            // Make an AJAX request to the PHP script
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "a.py", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Display the output from the Python script
-                    alert(xhr.responseText);
-                }
-            };
-            xhr.send("message=clicked!");
-        }
-// Add an event listener to the form
-document.getElementById('email-form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the default form submission
-
-  // Get the email value from the input field
-  const emailInput = document.getElementById('email-input');
-  const email = emailInput.value;
-
-  // Use AJAX to send the email to the server and execute the Python script
-  $.ajax({
-    type: 'POST',
-    url: '/run-python-script',
-    data: { email: email },
-    success: function(response) {
-      // Display a success message or update the UI as needed
-      console.log(response);
-    },
-    error: function(xhr, status, error) {
-      // Handle any errors
-      console.error('Error:', error);
-    }
-  });
-
-  // Clear the email input field
-  emailInput.value = '';
-
-  // Hide the modal
-  $('#emailModal').modal('hide');
-});
-</script>

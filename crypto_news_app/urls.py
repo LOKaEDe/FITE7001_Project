@@ -8,4 +8,5 @@ urlpatterns = [
    path('report/', views.report, name="report"),
    path('exchanges/', views.exchanges, name="exchanges"),
    path('exchanges/<str:exchange_name>', views.exchanges_detail, name="detail"),
+   path('email-post/', views.email_post, name="email-post"),
 ]
